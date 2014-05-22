@@ -5,9 +5,10 @@ ASP.net C# Wrapper class for Gimmie API
 
 # Quick Start and Examples
 
+Put Gimmie.cs & OAuthBase.cs in Project Library 
+
 ```
-  Put Gimmie.cs & OAuthBase.cs in Project Library 
-  
+
    // Get your GIMMIE_CONSUMER_KEY & GIMMIE_SECRET_KEY from Game Manager in Gimmie Portal
   Library.Gimmie gimmieObj = new Library.Gimmie("GIMMIE_CONSUMER_KEY", "GIMMIE_SECRET_KEY");
   
@@ -16,11 +17,9 @@ ASP.net C# Wrapper class for Gimmie API
   
   // To retrieve all rewards
   JObject rewardCategory = gimmieObj.categories();
-  
-  
-  Run project solution for a quick demo. 
-    
+      
 ```
+Run project solution for a quick demo. 
 
 # License
 The MIT License (MIT)
