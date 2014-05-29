@@ -75,10 +75,13 @@ namespace Library
             
         }
 
-        public JObject login(string old_uid) {
+        public JObject login(string old_uid = "", string country = "", string email = "", string name = "") {
 
             var parameters = new Dictionary<string, string> { 
-                { "old_uid", old_uid } 
+                { "old_uid", old_uid },
+                { "country", country },
+                { "email", email },
+                { "name", name }
             };
 
             return this.invoke("login", parameters);
