@@ -94,270 +94,317 @@ namespace Library
             return this.invoke("categories", parameters);
         }
   
-    public JObject rewards(string reward_id) {
-        var parameters = new Dictionary<string, string> { 
-            { "reward_id", reward_id } 
-        };
+        public JObject rewards(string reward_id) {
+            var parameters = new Dictionary<string, string> { 
+                { "reward_id", reward_id } 
+            };
 
-        return this.invoke("rewards", parameters);
-    }  
+            return this.invoke("rewards", parameters);
+        }  
   
-    public JObject profile() {
-        var parameters = new Dictionary<string, string> { 
-        };
-        return this.invoke("profile", parameters);
-    }
+        public JObject profile() {
+            var parameters = new Dictionary<string, string> { 
+            };
+            return this.invoke("profile", parameters);
+        }
 
-    public JObject claims(string claim_id) {
-        var parameters = new Dictionary<string, string> { 
-            { "claim_id", claim_id } 
-        };
-        return this.invoke("claims", parameters);
-  }
+        public JObject claims(string claim_id) {
+            var parameters = new Dictionary<string, string> { 
+                { "claim_id", claim_id } 
+            };
+            return this.invoke("claims", parameters);
+      }
 
 
-    public JObject events(string event_id) {
-        var parameters = new Dictionary<string, string> { 
-            { "event_id", event_id } 
-        };
-        return this.invoke("events", parameters);
-    }
+        public JObject events(string event_id = "") {
+        
+             var parameters = new Dictionary<string, string>();
+    
+            if (event_id != "") 
+            {
+              parameters.Add("event_id", event_id);
+            }
+
+            return this.invoke("events", parameters);
+        }
   
-    public JObject badges(string progress = "0") {
-        var parameters = new Dictionary<string, string> { 
-            { "progress", progress } 
-        };
-        return this.invoke("badges", parameters);
-    }
+        public JObject badges(string progress = "0") {
+            var parameters = new Dictionary<string, string> { 
+                { "progress", progress } 
+            };
+            return this.invoke("badges", parameters);
+        }
 
 
-  public JObject trigger(string event_name, string source_uid = "", string str_params = "") {
+      public JObject trigger(string event_name, string source_uid = "", string str_params = "") {
  
-    var parameters = new Dictionary<string, string> { 
-        { "event_name", event_name }, 
-        { "source_uid", source_uid }
-    };
+        var parameters = new Dictionary<string, string> { 
+            { "event_name", event_name }, 
+            { "source_uid", source_uid }
+        };
    
-    var items = str_params.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split(new[] { '=' }));
+        var items = str_params.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Split(new[] { '=' }));
 
-    Dictionary<string, string> additional_params = new Dictionary<string, string>();
+        Dictionary<string, string> additional_params = new Dictionary<string, string>();
     
-    foreach (var item in items)
-    {
-        additional_params.Add(item[0], item[1]);
-    }
+        foreach (var item in items)
+        {
+            additional_params.Add(item[0], item[1]);
+        }
     
-    additional_params.ToList().ForEach(x => parameters.Add(x.Key, x.Value));
+        additional_params.ToList().ForEach(x => parameters.Add(x.Key, x.Value));
 
-    return this.invoke("trigger", parameters);
+        return this.invoke("trigger", parameters);
 
-  }
+      }
 
-  public JObject check_in(string mayorship_id, string venue) {
+      public JObject check_in(string mayorship_id, string venue) {
 
-        var parameters = new Dictionary<string, string> { 
-            { "venue", venue } 
-        };
-        return this.invoke("check_in/" + mayorship_id, parameters);
-  }
+            var parameters = new Dictionary<string, string> { 
+                { "venue", venue } 
+            };
+            return this.invoke("check_in/" + mayorship_id, parameters);
+      }
 
-  public JObject redeem(string reward_id) {
+      public JObject redeem(string reward_id) {
 
-        var parameters = new Dictionary<string, string> { 
-            { "reward_id", reward_id } 
-        };
-        return this.invoke("redeem", parameters);
-  }
+            var parameters = new Dictionary<string, string> { 
+                { "reward_id", reward_id } 
+            };
+            return this.invoke("redeem", parameters);
+      }
 
-  public JObject gift(string reward_id) {
-        var parameters = new Dictionary<string, string> { 
-            { "reward_id", reward_id } 
-        };
-      return this.invoke("gift", parameters);
-  }
+      public JObject gift(string reward_id) {
+            var parameters = new Dictionary<string, string> { 
+                { "reward_id", reward_id } 
+            };
+          return this.invoke("gift", parameters);
+      }
 
-  public JObject top20points() {
-        var parameters = new Dictionary<string, string> { 
-        };
-       return this.invoke("top20points", parameters);   
-  }
+      public JObject top20points(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
+           return this.invoke("top20points", parameters);   
+      }
 
-  public JObject top20prices() {
-        var parameters = new Dictionary<string, string> { 
-        };
-       return this.invoke("top20prices", parameters);
-  }
+      public JObject top20prices(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
+           return this.invoke("top20prices", parameters);
+      }
 
-  public JObject top20redemptions_count() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count", parameters);
-  }
+          return this.invoke("top20redemptions_count", parameters);
+      }
 
-  public JObject top20points_past_7_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_past_7_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/past_7_days", parameters);
-  }
+          return this.invoke("top20points/past_7_days", parameters);
+      }
   
-  public JObject top20prices_past_7_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_past_7_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/past_7_days", parameters);
-  }
+          return this.invoke("top20prices/past_7_days", parameters);
+      }
    
-  public JObject top20redemptions_count_past_7_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_past_7_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/past_7_days", parameters);
-  }
+          return this.invoke("top20redemptions_count/past_7_days", parameters);
+      }
 
-  public JObject top20points_past_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_past_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/past_week", parameters);
-  }
+          return this.invoke("top20points/past_week", parameters);
+      }
 
-  public JObject top20prices_past_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_past_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/past_week", parameters);
-  }
+          return this.invoke("top20prices/past_week", parameters);
+      }
 
-  public JObject top20redemptions_count_past_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_past_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/past_week", parameters);
-  }
+          return this.invoke("top20redemptions_count/past_week", parameters);
+      }
 
-  public JObject top20points_this_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_this_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/this_week", parameters);
-  }
+          return this.invoke("top20points/this_week", parameters);
+      }
 
-  public JObject top20prices_this_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_this_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/this_week", parameters);
-  }
+          return this.invoke("top20prices/this_week", parameters);
+      }
 
-  public JObject top20redemptions_count_this_week() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_this_week(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/this_week", parameters);
-  }
+          return this.invoke("top20redemptions_count/this_week", parameters);
+      }
   
 
-  public JObject top20points_today() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_today(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/today", parameters);
-  }
+          return this.invoke("top20points/today", parameters);
+      }
 
 
-  public JObject top20prices_today() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_today(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/today", parameters);
-  }
+          return this.invoke("top20prices/today", parameters);
+      }
 
-  public JObject top20redemptions_count_today() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_today(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/today", parameters);
-  }  
+          return this.invoke("top20redemptions_count/today", parameters);
+      }  
   
-  public JObject top20points_past_30_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_past_30_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/past_30_days", parameters);
-  }  
+          return this.invoke("top20points/past_30_days", parameters);
+      }  
   
-  public JObject top20prices_past_30_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_past_30_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/past_30_days", parameters);
-  }  
+          return this.invoke("top20prices/past_30_days", parameters);
+      }  
   
-  public JObject top20redemptions_count_past_30_days() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_past_30_days(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/past_30_days", parameters);
-  }  
+          return this.invoke("top20redemptions_count/past_30_days", parameters);
+      }  
   
-  public JObject top20points_past_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20points_past_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20points/past_month", parameters);
-  } 
+          return this.invoke("top20points/past_month", parameters);
+      } 
   
-  public JObject top20prices_past_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20prices_past_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/past_month", parameters);
-  } 
+          return this.invoke("top20prices/past_month", parameters);
+      } 
  
- public JObject top20redemptions_count_past_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+      public JObject top20redemptions_count_past_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20redemptions_count/past_month", parameters);
-  } 
-      
-public JObject top20points_this_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+          return this.invoke("top20redemptions_count/past_month", parameters);
+        } 
 
-      return this.invoke("top20points/this_month", parameters);
-  } 
-     
-public JObject top20prices_this_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+        public JObject top20points_this_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("top20prices/this_month", parameters);
-  } 
-    
-public JObject top20redemptions_count_this_month() {
-        var parameters = new Dictionary<string, string> { 
-        };
+          return this.invoke("top20points/this_month", parameters);
+        } 
 
-      return this.invoke("top20redemptions_count/this_month", parameters);
-  } 
-    
-public JObject change_points(string change, string description = "") {
-        var parameters = new Dictionary<string, string> { 
-            { "points", change },
-            { "description", description }
-        };
-      return this.invoke("gift", parameters);
-  }
-  
-public JObject recent_activites() {
-        var parameters = new Dictionary<string, string> { 
-        };
+        public JObject top20prices_this_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+              { "this_game", this_game } 
+            };
 
-      return this.invoke("recent_activities", parameters);
-  } 
+          return this.invoke("top20prices/this_month", parameters);
+        } 
+
+        public JObject top20redemptions_count_this_month(string this_game = "0") {
+            var parameters = new Dictionary<string, string> { 
+               { "this_game", this_game } 
+            };
+
+          return this.invoke("top20redemptions_count/this_month", parameters);
+        } 
+
+        public JObject change_points(string change, string description = "") {
+            var parameters = new Dictionary<string, string> { 
+                { "points", change },
+                { "description", description }
+            };
+          return this.invoke("gift", parameters);
+        }
+
+        public JObject recent_activites() {
+            var parameters = new Dictionary<string, string> { 
+            };
+
+          return this.invoke("recent_activities", parameters);
+        } 
+
+        public JObject around_points(string country = "", string n = "") {
+        
+            var parameters = new Dictionary<string, string>();
+          
+            if (country != "") 
+            {
+              parameters.Add("country", country);
+            }
+
+            if (n != "") 
+            {
+              parameters.Add("n", n);
+            }
+            
+            return this.invoke("around_points", parameters);
+        }
 
     }
+    
 }
