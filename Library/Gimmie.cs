@@ -61,7 +61,7 @@ namespace Library
             var oAuth = new OAuthBase();
             var nonce = oAuth.GenerateNonce();
             var timeStamp = oAuth.GenerateTimeStamp();
-            var signature = oAuth.GenerateSignature(uri, key, secret, access_token, access_token_secret, "GET", timeStamp, nonce, OAuthBase.SignatureTypes.HMACSHA1, out url2, out param);
+            var signature = System.Web.HttpUtility.UrlEncode(oAuth.GenerateSignature(uri, key, secret, access_token, access_token_secret, "GET", timeStamp, nonce, OAuthBase.SignatureTypes.HMACSHA1, out url2, out param));
 
             WebRequest req = WebRequest.Create(string.Format("{0}?{1}&oauth_signature={2}", url2, param, signature));
             WebResponse res = req.GetResponse();
