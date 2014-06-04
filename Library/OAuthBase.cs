@@ -347,9 +347,12 @@ namespace OAuth
         /// <returns></returns>
         public virtual string GenerateNonce()
         {
+           TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+           string nonce = Convert.ToInt64(ts.TotalSeconds).ToString();
+
           string characters = "abcdefghijklmnopqrsituvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
           int nonce_length = 10;
-          string nonce = "";
+
           for (int p = 0; p < nonce_length; p++)
           {
           nonce = nonce + characters[random.Next(0, characters.Length - 1)];
