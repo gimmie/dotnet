@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,14 +21,14 @@ namespace demo
 
             Library.Gimmie gimmieObj = new Library.Gimmie("<CONSUMER KEY>", "<SECRET KEY>"); //Get the consumer & secret key after creating Game
 
-            gimmieObj.set_user("demo_user");
+            gimmieObj.set_user(tbPlayer.Text);
 
-            JObject loginDetail = gimmieObj.categories();
+            JObject loginDetail = gimmieObj.profile();
 
             ltJson.Text = loginDetail.ToString();
             pn.Visible = true;
 
-            
+
         }
     }
 }
